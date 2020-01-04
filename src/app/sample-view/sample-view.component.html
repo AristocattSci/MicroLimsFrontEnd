@@ -1,0 +1,25 @@
+<p>Samples for review</p>
+<form class="form-inline my-2 my-lg-0">
+  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search Samples</button>
+</form>
+ 
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Sample Id</th>
+      <th scope="col">Status</th>
+      <th scope="col">Logged In by</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let sample of sampleList.samples; let i = index" (click)=gotoEntityDetail(sample)>
+        <td>{{i + 1}}</td>
+        <td>{{sample.idNumeric}}</td>
+        <td>{{sample.status}}</td>
+        <td>{{sample.LoggedInBy}}</td>
+    </tr>
+
+  </tbody>
+</table>

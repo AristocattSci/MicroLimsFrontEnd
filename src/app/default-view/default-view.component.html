@@ -1,0 +1,20 @@
+<p>Samples for review</p>
+<form class="form-inline my-2 my-lg-0">
+  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
+ 
+<table class="table">
+  <thead>
+    <tr >
+      <th *ngFor="let column of data.columns" scope="col">{{column}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let record of data.data; let i = index" (click)=getEntityDetails(record)>
+        <td *ngFor="let column of data.columns">
+          {{record[column]}}
+        </td>
+    </tr>  
+
+  </tbody>
