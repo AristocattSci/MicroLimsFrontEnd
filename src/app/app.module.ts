@@ -19,6 +19,7 @@ import { EntityViewerDirective } from './entity-viewer.directive';
 import { DefaultViewComponent } from './default-view/default-view.component';
 import { EntityViewerService } from './entity-viewer.service';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,15 +32,17 @@ import { CommonModule } from '@angular/common';
     DefaultDetailComponent,
     EntityViewerComponent,
     EntityViewerDirective,
-    DefaultViewComponent
+    DefaultViewComponent,
   ],
   imports: [
     CommonModule,
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  entryComponents: [SampleDetailComponent, SampleViewComponent, DefaultViewComponent],
+  entryComponents: [SampleDetailComponent, SampleViewComponent, DefaultViewComponent, DefaultDetailComponent],
   providers: [SampleViewService, EntityViewerService],
   bootstrap: [AppComponent]
 })

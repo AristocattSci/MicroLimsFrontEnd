@@ -5,6 +5,7 @@ import { SampleViewComponent } from '../sample-view/sample-view.component';
 import { DefaultViewComponent } from '../default-view/default-view.component';
 import { EntityViewerService, IEntity, IEntityCollection } from '../entity-viewer.service';
 import {Location} from '@angular/common';
+import { EntitydetailService } from '../entitydetail.service';
 
 @Component({
   selector: 'app-entity-viewer',
@@ -12,7 +13,6 @@ import {Location} from '@angular/common';
   styleUrls: ['./entity-viewer.component.css']
 })
 export class EntityViewerComponent implements OnInit {
-
 
   data: IEntityCollection;
 
@@ -22,7 +22,7 @@ export class EntityViewerComponent implements OnInit {
     private route: ActivatedRoute,
     private componentFactoryResolver: ComponentFactoryResolver,
     private entityViewerService: EntityViewerService,
-    private location: Location
+    private location: Location,
   ) { }
 
   ngOnInit() {
@@ -30,6 +30,7 @@ export class EntityViewerComponent implements OnInit {
      console.log("Going to entity viewer service with path" + this.location.path());
      this.entityViewerService.getEntities(this.location.path())
         .subscribe(mydata => {
+          console.log(mydata);
           this.data = mydata;
           this.decideEntityView();      
         });
@@ -67,6 +68,10 @@ export class EntityViewerComponent implements OnInit {
     //Adds the new component to the view
     const componentRef = viewContainerRef.createComponent(componentFactory);
     //Add data to the component -- Edit later
+        console.log("the data");
+    console.log(this.data);
+    console.log(this.data.data);
+    console.log(this.data.metadata);
     (<DefaultViewComponent>componentRef.instance).data = this.data;    
   }
 
@@ -83,7 +88,10 @@ export class EntityViewerComponent implements OnInit {
     //Add data to the component -- Edit later
     console.log("the data");
     console.log(this.data);
+    console.log(this.data.data);
+    console.log(this.data.metadata);
     (<SampleViewComponent>componentRef.instance).data = this.data;
+
   }
 
 

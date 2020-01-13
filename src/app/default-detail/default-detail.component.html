@@ -1,1 +1,11 @@
 <p>default-detail works!</p>
+
+<div class="col-md-4" *ngFor="let column of columns">
+    {{column}} : <input [(ngModel)]="entity[column]">
+</div>
+
+<form [formGroup]="updateEntity" (ngSubmit)="onSubmit(value)">
+
+  <button class="button" type="submit">Update</button>
+
+</form>

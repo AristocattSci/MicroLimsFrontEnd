@@ -7,12 +7,12 @@
 <table class="table">
   <thead>
     <tr >
-      <th *ngFor="let column of data.columns" scope="col">{{column}}</th>
+      <th *ngFor="let column of data.data.columns" scope="col">{{column}}</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let record of data.data; let i = index" (click)=getEntityDetails(record)>
-        <td *ngFor="let column of data.columns">
+    <tr *ngFor="let record of data.data.data; let i = index" (click)=getEntityDetails(record)>
+        <td *ngFor="let column of data.data.columns">
           {{record[column]}}
         </td>
     </tr>  

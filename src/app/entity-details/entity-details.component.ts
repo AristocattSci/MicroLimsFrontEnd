@@ -2,6 +2,9 @@ import { Component, OnInit, ViewChild, ComponentFactoryResolver } from '@angular
 import { ActivatedRoute, Params } from '@angular/router';
 import { EntityDirectiveDirective } from '../entity-directive.directive';
 import { SampleDetailComponent } from '../sample-detail/sample-detail.component';
+import { IEntity } from '../entity-viewer.service';
+import { DefaultDetailComponent } from '../default-detail/default-detail.component';
+import { EntityComponent } from '../entity/entity.component';
 
 
 
@@ -28,10 +31,29 @@ export class EntityDetailsComponent implements OnInit {
     })
     switch(entityType){
       case 'sample':
-        this.displaySampleDetails(this.route.params['entityid'])
+        console.log("hiii");
+        this.displaySampleDetails(this.route.params['entityid']);
+        break;
+      default: 
+        console.log(entityType);
+        console.log(entityId);
+        this.displayDefaultDetails(entityType, entityId);
+        break;
     }
 
   }
+
+  displayDefaultDetails(table: any, tableId: any){
+
+    console.log("default details");
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(DefaultDetailComponent);
+    const viewContainerRef = this.EntityDirective.viewContainerRef;
+    viewContainerRef.clear();
+    const componentRef = viewContainerRef.createComponent(componentFactory);
+    console.log(tableId);
+    (<EntityComponent>componentRef.instance).data = tableId;
+
+  };
 
   displaySampleDetails(idNumeric: number)
   {
